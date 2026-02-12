@@ -10,8 +10,8 @@
     align-items: center;
     justify-content: center;
     font-family: system-ui, sans-serif;
-    background: #7c86dd;
-    background-image: url('images/blue\ frame.jpg');
+    background: rgb(255, 252, 253);
+    background-image: url('images/red\ petal\ frame.jpg');
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -20,41 +20,42 @@
   .card {
     text-align: center;
     position: relative;
-    z-index: 50;
     padding: 40px;
     border-radius: 12px;
-    color: white;
+    
   }
 
   button {
-    padding: 12px 24px;
-    border-radius: 8px;
+    padding: 25px 40px;
+    border-radius: 10px;
     border: none;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
   }
 
   #yes {
-    background: #5c7bdf;
-    color: white;
+    background: linear-gradient(135deg, #f0e8eb 0%, #f8f5f6 100%);
+    color: rgb(228, 20, 20);
     margin-right: 12px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(252, 171, 201, 0.4);
   }
 
   #no {
-    background: #1c1d3f;
+    background: rgba(236, 217, 220, 0.8);
+    color: #e71022;
     position: absolute;
     transition: transform 0.2s ease;
+    font-weight: 600;
   }
   #yes-response {
   opacity: 0;
   transform: translateY(10px);
-  position: relative;
-  z-index: 80;
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 body.warm {
-  background: #4b5bec;
+  background: linear-gradient(135deg, #f80b0b 0%, #fa202b 100%);
   transition: background 0.6s ease;
 }
 
@@ -66,12 +67,11 @@ body.warm {
 .balloon {
   position: absolute;
   bottom: -40px;
-  width: 100px; /* Adjust size as needed */
-  height: 150px; /* Adjust size as needed */
-  background: linear-gradient(135deg, #2a49ad 0%, #16189e 50%, #071f5f 100%);
-  border-radius: 50% 50% 45% 45%;
-  opacity: 0.9;
-  z-index: 1;
+  width: 22px;
+  height: 28px;
+  background: linear-gradient(135deg, #faf8f8 0%, #f8f3f4 50%, #f3e8e8 100%);
+  border-radius: 80% 80% 85% 85%;
+  opacity: 5.9;
   animation: rise 6s ease-in forwards;
   box-shadow: inset -2px -2px 5px rgba(0,0,0,0.2), -2px 2px 8px rgba(0,0,0,0.1);
 }
@@ -100,10 +100,9 @@ body.warm {
 
 .heart {
   position: fixed;
-  width: 50px; /* Adjust size as needed */
-  height: 50px; /* Adjust size as needed */
-  opacity: 0.8;
-  z-index: 1;
+  width: 40px;
+  height: 30px;
+  opacity: 4.8;
   animation: fall 6s ease-in forwards;
   pointer-events: none;
 }
@@ -112,26 +111,26 @@ body.warm {
 .heart::after {
   content: "";
   position: absolute;
-  background: #4f3bff;
+  background: #ffffff;
   border-radius: 50%;
 }
 
 .heart::before {
-  width: 12px;
-  height: 12px;
+  width: 22px;
+  height: 22px;
   top: 0;
   left: 0;
 }
 
 .heart::after {
-  width: 12px;
-  height: 12px;
+  width: 22px;
+  height: 22px;
   top: 0;
   right: 0;
 }
 
 .heart {
-  background: linear-gradient(135deg, #0f0064 0%, #281fa0 100%);
+  background: linear-gradient(135deg, #f7e9eb 0%, #fdfafb 100%);
   clip-path: polygon(50% 100%, 0% 38%, 0% 13%, 13% 0%, 50% 35%, 87% 0%, 100% 13%, 100% 38%);
 }
 
@@ -141,51 +140,20 @@ body.warm {
     opacity: 0;
   }
 }
-    body {
-        font-family: 'Arial', sans-serif;
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        background-color: #f0f0f0;
-    }
-    h1 {
-        font-size: 4em;
-        animation: typing 3s steps(30, end);
-        white-space: nowrap;
-        overflow: hidden;
-        border-right: 4px solid;
-    }
-    @keyframes typing {
-        from { width: 0; }
-        to { width: 100%; }
-    }
-    .button {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        font-size: 1.5em;
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        opacity: 0;
-        transform: translateY(20px);
-        animation: pop 0.5s forwards;
-        animation-delay: 3s;
-        transition: opacity 0.5s ease, transform 0.5s ease;
-    }
+
+
 </style>
 </head>
 <body>
 
 <div class="card">
-  <h2>Will you be my Valentine? 💖</h2>
+  <h2 style="color: #f5f5f5; font-size: 40px; padding-right: 0px; padding-left: 30px; justify-content: center;">Will you be my Valentine? 💖</h2>
   <button id="yes">Yes</button>
   <button id="no">No</button>
 
   <div id="yes-response" hidden>
-  <h2>You just made my day 💖</h2>
-  <p>Happy Valentine’s Day, <span id="name">my love</span></p>
+  <h2 style="color: #f3f0f1;">You just made my day 💖</h2>
+  <p style="color: #ece8e8;">Happy Valentine's Day, <span id="name" style="color: #fdfcfc; font-weight: 600;">my love</span></p>
 </div>
 
 </div>
@@ -251,13 +219,6 @@ body.warm {
         yesResponse.style.transform = 'translateY(0)';
       }
       document.body.classList.add('warm');
-      // remove buttons so they cannot reappear after transition
-      try {
-        if (yesBtn && yesBtn.parentNode) yesBtn.parentNode.removeChild(yesBtn);
-        if (noBtn && noBtn.parentNode) noBtn.parentNode.removeChild(noBtn);
-      } catch (e) {
-        console.warn('Could not remove buttons:', e);
-      }
       setInterval(spawnBalloons, 400);
     }, 220);
   }
@@ -289,15 +250,6 @@ body.warm {
   }
 }
 
-  window.onload = function() {
-        const button = document.querySelector('.button');
-        const h1 = document.querySelector('h1');
-        h1.style.animation = 'typing 3s steps(30, end)';
-        setTimeout(() => {
-            button.style.opacity = 1;
-            button.style.transform = 'translateY(0)';
-        }, 3000);
-    };
 </script>
 
 </body>
