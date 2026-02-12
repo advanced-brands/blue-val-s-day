@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Be My Valentine</title>
 <style>
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
   body {
     height: 100vh;
     display: flex;
@@ -15,6 +22,8 @@
     background-size: cover;
     background-position: center;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
   }
 
   .card {
@@ -22,7 +31,7 @@
     position: relative;
     padding: 40px;
     border-radius: 12px;
-    
+    max-width: 90vw;
   }
 
   button {
@@ -31,12 +40,15 @@
     border: none;
     font-size: 20px;
     cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   #yes {
     background: linear-gradient(135deg, #f0e8eb 0%, #f8f5f6 100%);
     color: rgb(228, 20, 20);
     margin-right: 12px;
+    margin-bottom: 12px;
     font-weight: 600;
     box-shadow: 0 4px 15px rgba(252, 171, 201, 0.4);
   }
@@ -48,98 +60,163 @@
     transition: transform 0.2s ease;
     font-weight: 600;
   }
+
   #yes-response {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
 
-body.warm {
-  background: linear-gradient(135deg, #f80b0b 0%, #fa202b 100%);
-  transition: background 0.6s ease;
-}
+  body.warm {
+    background: linear-gradient(135deg, #f80b0b 0%, #fa202b 100%);
+    transition: background 0.6s ease;
+  }
 
-.fade-out {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-.balloon {
-  position: absolute;
-  bottom: -40px;
-  width: 22px;
-  height: 28px;
-  background: linear-gradient(135deg, #faf8f8 0%, #f8f3f4 50%, #f3e8e8 100%);
-  border-radius: 80% 80% 85% 85%;
-  opacity: 5.9;
-  animation: rise 6s ease-in forwards;
-  box-shadow: inset -2px -2px 5px rgba(0,0,0,0.2), -2px 2px 8px rgba(0,0,0,0.1);
-}
+  .fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
 
-.balloon::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  width: 1px;
-  height: 12px;
-  background: rgba(0,0,0,0.15);
-  transform: translateX(-50%);
-}
-
-@keyframes rise {
-  from {
-    transform: translateY(0) scale(1);
+  .balloon {
+    position: absolute;
+    bottom: -40px;
+    width: 22px;
+    height: 28px;
+    background: linear-gradient(135deg, #faf8f8 0%, #f8f3f4 50%, #f3e8e8 100%);
+    border-radius: 80% 80% 85% 85%;
     opacity: 0.8;
+    animation: rise 6s ease-in forwards;
+    box-shadow: inset -2px -2px 5px rgba(0,0,0,0.2), -2px 2px 8px rgba(0,0,0,0.1);
   }
-  to {
-    transform: translateY(-120vh) scale(1.05);
-    opacity: 0;
+
+  .balloon::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 1px;
+    height: 12px;
+    background: rgba(0,0,0,0.15);
+    transform: translateX(-50%);
   }
-}
 
-.heart {
-  position: fixed;
-  width: 40px;
-  height: 30px;
-  opacity: 4.8;
-  animation: fall 6s ease-in forwards;
-  pointer-events: none;
-}
-
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  background: #ffffff;
-  border-radius: 50%;
-}
-
-.heart::before {
-  width: 22px;
-  height: 22px;
-  top: 0;
-  left: 0;
-}
-
-.heart::after {
-  width: 22px;
-  height: 22px;
-  top: 0;
-  right: 0;
-}
-
-.heart {
-  background: linear-gradient(135deg, #f7e9eb 0%, #fdfafb 100%);
-  clip-path: polygon(50% 100%, 0% 38%, 0% 13%, 13% 0%, 50% 35%, 87% 0%, 100% 13%, 100% 38%);
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0;
+  @keyframes rise {
+    from {
+      transform: translateY(0) scale(1);
+      opacity: 0.8;
+    }
+    to {
+      transform: translateY(-120vh) scale(1.05);
+      opacity: 0;
+    }
   }
-}
+
+  .heart {
+    position: fixed;
+    width: 40px;
+    height: 30px;
+    opacity: 0.8;
+    animation: fall 6s ease-in forwards;
+    pointer-events: none;
+  }
+
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+  }
+
+  .heart::before {
+    width: 22px;
+    height: 22px;
+    top: 0;
+    left: 0;
+  }
+
+  .heart::after {
+    width: 22px;
+    height: 22px;
+    top: 0;
+    right: 0;
+  }
+
+  .heart {
+    background: linear-gradient(135deg, #f7e9eb 0%, #fdfafb 100%);
+    clip-path: polygon(50% 100%, 0% 38%, 0% 13%, 13% 0%, 50% 35%, 87% 0%, 100% 13%, 100% 38%);
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .card {
+      padding: 30px 20px;
+    }
+
+    .card h2 {
+      font-size: 28px !important;
+      padding-right: 15px !important;
+      padding-left: 15px !important;
+    }
+
+    button {
+      padding: 18px 30px;
+      font-size: 16px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    #yes {
+      margin-right: 8px;
+    }
+
+    #no {
+      position: relative;
+      margin-top: 10px;
+    }
+
+    #yes-response p {
+      font-size: 14px !important;
+    }
+
+    #yes-response h2 {
+      font-size: 24px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .card {
+      padding: 20px 15px;
+    }
+
+    .card h2 {
+      font-size: 22px !important;
+    }
+
+    button {
+      padding: 25px 40px;
+      font-size: 18px;
+      margin: 0 8px 15px 8px;
+      display: inline-block;
+    }
+
+    #yes {
+      margin-right: 8px;
+    }
+
+    #no {
+      position: relative;
+      margin-left: 8px;
+    }
+  }
 
 
 </style>
@@ -147,7 +224,7 @@ body.warm {
 <body>
 
 <div class="card">
-  <h2 style="color: #f5f5f5; font-size: 40px; padding-right: 0px; padding-left: 30px; justify-content: center;">Will you be my Valentine? 💖</h2>
+  <h2 style="color: #f5f5f5; font-size: 40px; padding-right: 30px; padding-left: 30px; justify-content: center;">Will you be my Valentine? 💖</h2>
   <button id="yes">Yes</button>
   <button id="no">No</button>
 
@@ -159,47 +236,64 @@ body.warm {
 </div>
 
 <script>
+  // Detect if device is mobile
+  const isMobile = () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+    || window.innerWidth <= 768 
+    || (() => {
+      // Check for touch support
+      try {
+        return (('ontouchstart' in window) ||
+                (navigator.maxTouchPoints > 0) ||
+                (navigator.msMaxTouchPoints > 0));
+      } catch(e) {
+        return false;
+      }
+    })();
+
   const noBtn = document.getElementById("no");
-
-  document.addEventListener("mousemove", (e) => {
-    const rect = noBtn.getBoundingClientRect();
-    const dx = e.clientX - (rect.left + rect.width / 2);
-    const dy = e.clientY - (rect.top + rect.height / 2);
-    const distance = Math.sqrt(dx * dx + dy * dy);
-
-    if (distance < 80) {
-      const x = Math.random() * 200 - 100;
-      const y = Math.random() * 200 - 100;
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    }
-  });
-  
   const yesBtn = document.getElementById('yes');
-  document.addEventListener('mousemove', (e) => {
-    if (!yesBtn) return;
-    const rect = yesBtn.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    const dx = e.clientX - cx;
-    const dy = e.clientY - cy;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-    const max = 160;
-    if (distance < max) {
-      const scale = 1 + (max - distance) / (max * 6);
-      const rotate = (dx / max) * 8;
-      const tx = (dx / max) * 8;
-      const ty = (dy / max) * -6;
-      yesBtn.style.transform = `translate(${tx}px, ${ty}px) scale(${scale}) rotate(${rotate}deg)`;
-      yesBtn.style.transition = 'transform 150ms ease, opacity 150ms ease';
-      yesBtn.style.opacity = '1';
-    } else {
-      yesBtn.style.transform = '';
-      yesBtn.style.opacity = '';
-    }
-  });
-
   const yesResponse = document.getElementById('yes-response');
   const promptHeading = document.querySelector('.card h2');
+
+  // Desktop: "No" button escape effect
+  if (!isMobile()) {
+    document.addEventListener("mousemove", (e) => {
+      const rect = noBtn.getBoundingClientRect();
+      const dx = e.clientX - (rect.left + rect.width / 2);
+      const dy = e.clientY - (rect.top + rect.height / 2);
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < 80) {
+        const x = Math.random() * 200 - 100;
+        const y = Math.random() * 200 - 100;
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+      }
+    });
+
+    // Desktop: "Yes" button hover effects
+    document.addEventListener('mousemove', (e) => {
+      if (!yesBtn) return;
+      const rect = yesBtn.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const max = 160;
+      if (distance < max) {
+        const scale = 1 + (max - distance) / (max * 6);
+        const rotate = (dx / max) * 8;
+        const tx = (dx / max) * 8;
+        const ty = (dy / max) * -6;
+        yesBtn.style.transform = `translate(${tx}px, ${ty}px) scale(${scale}) rotate(${rotate}deg)`;
+        yesBtn.style.transition = 'transform 150ms ease, opacity 150ms ease';
+        yesBtn.style.opacity = '1';
+      } else {
+        yesBtn.style.transform = '';
+        yesBtn.style.opacity = '';
+      }
+    });
+  }
 
   function revealYesResponse() {
     if (!yesBtn || yesBtn.disabled) return;
@@ -226,30 +320,28 @@ body.warm {
   yesBtn.addEventListener('click', revealYesResponse);
   yesBtn.addEventListener('touchend', (ev) => { ev.preventDefault(); revealYesResponse(); }, { passive: false });
 
-
   function spawnBalloons() {
-  for (let i = 0; i < 8; i++) {
-    if (Math.random() > 0.5) {
-      // Spawn balloon
-      const balloon = document.createElement("div");
-      balloon.className = "balloon";
-      balloon.style.left = Math.random() * 100 + "%";
-      balloon.style.animationDuration = 5 + Math.random() * 3 + "s";
-      document.body.appendChild(balloon);
-      setTimeout(() => balloon.remove(), 8000);
-    } else {
-      // Spawn heart
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.top = "-30px";
-      heart.style.animationDuration = 5 + Math.random() * 3 + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
+    for (let i = 0; i < 8; i++) {
+      if (Math.random() > 0.5) {
+        // Spawn balloon
+        const balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.style.left = Math.random() * 100 + "%";
+        balloon.style.animationDuration = 5 + Math.random() * 3 + "s";
+        document.body.appendChild(balloon);
+        setTimeout(() => balloon.remove(), 8000);
+      } else {
+        // Spawn heart
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = "-30px";
+        heart.style.animationDuration = 5 + Math.random() * 3 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 8000);
+      }
     }
   }
-}
-
 </script>
 
 </body>
